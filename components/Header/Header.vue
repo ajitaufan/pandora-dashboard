@@ -7,7 +7,7 @@
       <span class="navbar-toggler-icon"></span>
     </button>
     <b-navbar-nav class="d-md-down-none">
-      <span class="px-3">Pandora Req.</span>
+      <span class="px-3"><i class="icon-screen-desktop"></i> Pandora Req.</span>
     </b-navbar-nav>
     <b-navbar-nav class="ml-auto">
       <HeaderDropdown/>

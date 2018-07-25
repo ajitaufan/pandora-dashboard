@@ -8,17 +8,17 @@
           </c-table>
         </b-col><!--/.col-->
       
-      
+<!--       
         <b-col>
           <c-table striped caption="<i class='fa fa-align-justify'></i> Striped Table"></c-table>
-        </b-col><!--/.col-->
+        </b-col>/.col -->
 
   </div>
 </div>
 </template>
 
 <script>
-  import cTable from './tableG.vue'
+  import cTable from './tabel/tabelG.vue'
 
   export default {
     name: 'tables',

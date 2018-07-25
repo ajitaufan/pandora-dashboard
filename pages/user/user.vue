@@ -9,7 +9,7 @@
       <th scope="col">Alamat</th>
       <th scope="col">Telepon</th>
     </tr> 
-      <a class="btn btn-primary" href="/user/addAdmin" role="button">+ Admin</a>
+      <a class="btn btn-primary" href="./addA" role="button">+ Admin</a>
   </thead>
   <tbody>
     <tr>
@@ -49,6 +49,5 @@
 
 <script>
 export default {
-  layout: "dashb"
 };
 </script>

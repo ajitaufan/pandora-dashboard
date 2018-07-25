@@ -3,11 +3,7 @@ export default {
     {
       name: 'Dashboard',
       url: '/',
-      icon: 'icon-speedometer',
-      badge: {
-        variant: 'primary',
-        text: 'NEW'
-      }
+      icon: 'icon-home',
     },
     {
       title: true,
@@ -21,73 +17,85 @@ export default {
     {
       name: 'Warehouse',
       url: '/warehouse',
-      icon: 'icon-puzzle',
+      icon: 'icon-briefcase',
       children: [
         {
           name: 'Gudang',
-          url: '/warehouse/breadcrumbs',
-          icon: 'icon-puzzle'
+          url: '/warehouse/gudang',
+          icon: 'icon-briefcase'
         },
         {
           name: 'Barang',
-          url: '/warehouse/gudang',
-          icon: 'icon-puzzle'
+          url: '/warehouse/barang',
+          icon: 'icon-briefcase'
         },
         {
           name: 'Stok Barang',
-          url: '/warehouse/gudang',
-          icon: 'icon-puzzle'
+          url: '/warehouse/stok',
+          icon: 'icon-briefcase'
         }
       ]
     },
     {
-      name: 'Top Up Saldo',
-      url: '/theme/colors',
-      icon: 'icon-credit-card-alt'
+      name: 'Wallet',
+      url: '/wallet',
+      icon: 'icon-wallet',
+      children: [
+        {
+          name: 'Top Up Saldo',
+          url: '/wallet/topup',
+          icon: 'icon-wallet'
+        },
+        {
+          name: 'Withdraw Saldo',
+          url: '/wallet/withdraw',
+          icon: 'icon-wallet'
+        }
+      ]
     },
     {
       name: 'Pesanan',
       url: '/base',
-      icon: 'icon-puzzle',
+      icon: 'icon-basket-loaded',
       children: [
         {
           name: 'Status Pesanan',
           url: '/base/breadcrumbs',
-          icon: 'icon-puzzle'
+          icon: 'icon-basket-loaded'
         },
         {
           name: 'Track Shipping',
           url: '/base/cards',
-          icon: 'icon-puzzle'
+          icon: 'icon-basket-loaded'
         },
       ]
     },
     {
       name: 'Laporan',
       url: '/warehouse',
-      icon: 'icon-puzzle',
+      icon: 'icon-calculator',
       children: [
         {
           name: 'Pembelian Barang',
           url: '/base/breadcrumbs',
-          icon: 'icon-puzzle'
+          icon: 'icon-calculator'
         },
         {
           name: 'Seliing List',
           url: '/base/cards',
-          icon: 'icon-puzzle'
+          icon: 'icon-calculator'
         },
         {
           name: 'Riwayat Top Up Saldo',
           url: '/base/carousels',
-          icon: 'icon-puzzle'
+          icon: 'icon-calculator'
         }
       ]
     },
     {
       name: 'User',
       url: '/user/user',
-      icon: 'icon-users'
+      icon: 'icon-people'
     },
 
 

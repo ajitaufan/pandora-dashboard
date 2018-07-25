@@ -1,28 +1,21 @@
 <template>
-<div class="container">
-  <h2 class="lead">Daftar Barang</h2>
-  <table class="table table-hover">
-    <thead>
-      <tr class="table-active">
-        <th scope="col">ID Barang</th>
-        <th scope="col">Nama</th>
-        <th scope="col">SKU</th>
-        <th scope="col">Deskripsi</th>
-        <a class="btn btn-primary" href="/dashboard/warehouse/addGudang" role="button">+ Barang</a>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <th scope="row">Active</th>
-        <td>Column content</td>
-        <td>Column content</td>
-      </tr>
-      <tr>
-        <th scope="row">Default</th>
-        <td>Column content</td>
-        <td>Column content</td>
-      </tr>
-    </tbody>
-  </table> 
+<div class="wrapper">
+  <div class="animated fadeIn">
+
+    <b-col>
+      <c-table striped caption="<i class='fa fa-building'></i><strong> Daftar Barang</strong>">
+        <a class="btn btn-primary" href="/dashboard/warehouse/addGudang" role="button">+ Gudang</a>
+      </c-table>
+    </b-col>
+  </div>
 </div>
 </template>
+
+<script>
+  import cTable from './tabel/tabelB.vue'
+
+  export default {
+    name: 'tables',
+    components: {cTable}
+  }
+</script>

@@ -39,7 +39,7 @@
     const { data } = await axios.get(
       "http://abc710f1.ngrok.io/graphql?query=query%7B%0A%20%20gudang%7B%0A%20%20%20%20id%2C%0A%20%20%20%20nama%2C%0A%20%20%20%20alamat%0A%20%20%7D%0A%20%20%20%20%0A%20%20%0A%7D"
     );
-    return{datag: data.data.gudang}
+    return{data: data.data.gudang}
   
   },
     name: 'c-table',

@@ -31,6 +31,14 @@
               </b-form-group>
             </b-col>
           </b-row>
+          <b-row>
+            <b-col sm="12">
+              <b-form-group>
+                <label for="tanggal">Tanggal Input</label>
+                <b-form-input type="text" id="tanggal" placeholder="YYYY-MM-DD HH:MM:SS"></b-form-input>
+              </b-form-group>
+            </b-col>
+          </b-row>
           <div slot="footer">
             <center>
             <b-button type="submit" size="sm" variant="primary"><i class="fa fa-dot-circle-o"></i> Submit</b-button>

@@ -19,7 +19,7 @@
             <th scope="row">{{recipe.id}}</th>
             <td>{{recipe.nama}}</td>
             <td>{{recipe.alamat}}</td>
-          </tr>
+            </tr>
         </tbody>
       </table>
 
@@ -37,7 +37,7 @@ import axios from "axios"
 export default {
     async asyncData() {
     const { data } = await axios.get(
-      "http://77e3a2be.ngrok.io/graphql?query=query{gudang{id,nama,alamat}}"
+      "http://53f86dad.ngrok.io/graphql?query=query{gudang{id,nama,alamat}}"
     );
     return{datag: data.data.gudang }
   }

@@ -41,7 +41,7 @@
           </b-row>
           <div slot="footer">
             <center>
-            <b-button type="submit" size="sm" variant="primary"><i class="fa fa-dot-circle-o"></i> Submit</b-button>
+            <b-button type="submit" size="sm" href="/" variant="primary"><i class="fa fa-dot-circle-o"></i> Submit</b-button>
             </center>
           </div>
         </b-card>

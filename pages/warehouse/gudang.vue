@@ -3,14 +3,18 @@
   <div class="animated fadeIn">
 
     <b-card header="<i class='fa fa-building'></i><strong> Daftar Gudang</strong> ">
-      <p align='right'><strong>Gudang </strong><a class='btn-sm btn-success' href='./addA' role='button'><i class ='fa fa-plus'></i></a> </p>
-
+      <p align='right'> 
+      <nuxt-link class="btn-sm btn-success" :to="{path: './add-gudang'}">
+        <span class="fa fa-plus"></span>
+        Tambah Gudang
+      </nuxt-link> </p>
       <table class="table table-hover mt-3">
         <thead>
-          <tr class="table-active">
+          <tr class="table">
             <th scope="col">ID</th>
             <th scope="col">Nama</th>
             <th scope="col">Alamat</th>
+            <th style="width:10%"><center>Actions</center></th>
           </tr>
         </thead>
 
@@ -19,10 +23,13 @@
             <th scope="row">{{recipe.id}}</th>
             <td>{{recipe.nama}}</td>
             <td>{{recipe.alamat}}</td>
+            <td>
+              <nuxt-link class="btn-sm btn-warning" style="margin-right:3px" :to="{name: 'gudang-id-edit', params: {id: recipe.id}}">Edit</nuxt-link>
+              <nuxt-link class="btn-sm btn-danger" :to="{name: '', params: {id: recipe.id}}">Delete</nuxt-link>
+            </td>
             </tr>
         </tbody>
       </table>
-
     </b-card>
 
   </div>
@@ -37,7 +44,7 @@ import axios from "axios"
 export default {
     async asyncData() {
     const { data } = await axios.get(
-      "http://53f86dad.ngrok.io/graphql?query=query{gudang{id,nama,alamat}}"
+      process.env.myapi + "/graphql?query=query{gudang{id,nama,alamat}}"
     );
     return{datag: data.data.gudang }
   }

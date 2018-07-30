@@ -18,7 +18,10 @@ module.exports = {
   ** Customize the progress bar color
   */
   loading: { color: '#42A5CC' },
-
+  
+  env: {
+    myapi: process.env.myapi || "http://01d0dff7.ngrok.io"
+  },
   /**
    * Import CSS
    */

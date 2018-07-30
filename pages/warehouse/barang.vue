@@ -41,7 +41,7 @@ import axios from "axios"
 export default {
     async asyncData() {
     const { data } = await axios.get(
-      "http://53f86dad.ngrok.io/graphql?query={barang{id,nama,deskripsi}}"
+      process.env.myapi + "/graphql?query={barang{id,nama,deskripsi}}"
     );
     return{datag: data.data.barang }
   }

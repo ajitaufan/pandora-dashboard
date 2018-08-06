@@ -36,17 +36,15 @@
 
 
 <script>
-
-import axios from "axios"
+import axios from "axios";
 
 export default {
-
-    async asyncData() {
+  async asyncData() {
     const { data } = await axios.get(
-      process.env.myapi + 
-      "/graphql?query=%7B%0A%20%20stokDetail%20%7B%0A%20%20%20%20id_stok_header%0A%20%20%20%20id_barang%0A%20%20%20%20satuan%0A%20%20%20%20kuantitas%0A%20%20%20%20stokHeader%20%7B%0A%20%20%20%20%20%20id%0A%20%20%20%20%20%20jenis%0A%20%20%20%20%20%20tanggal%0A%20%20%20%20%20%20nomor%0A%20%20%20%20%09gudang%7B%0A%20%20%20%20%20%20%20%20nama%0A%20%20%20%20%20%20%7D%0A%20%20%20%20%7D%0A%20%20%20%20barang%20%7B%0A%20%20%20%20%20%20id%0A%20%20%20%20%20%20nama%0A%20%20%20%20%20%20deskripsi%0A%20%20%20%20%20%20sku%0A%20%20%20%20%7D%0A%20%20%7D%0A%7D%0A"
+      process.env.myapi +
+        "/graphql?query=query{%20stokDetail{id_stok_header,id_barang,kuantitas,satuan%20stokHeader{id,jenis,tanggal,nomor%20gudang{nama}}barang{id,nama,deskripsi,sku}}}"
     );
-    return{data: data.data.stokDetail }
+    return { data: data.data.stokDetail };
   }
 };
 </script>

@@ -3,40 +3,7 @@
     <div class="container">
       <b-row class="justify-content-center">
         <b-col md="6" sm="8">
-         <b-card>
-          <div slot="header">
-            <h3><strong>Top Up</strong> <small> saldo</small></h3>
-          </div>
-          <b-row>
-            <b-col sm="12">
-              <b-form-group>
-                <label for="notelp">Nomor telepon</label>
-                <b-form-input type="text" id="notelp" placeholder="08xxxxxxxxxxxx"></b-form-input>
-              </b-form-group>
-            </b-col>
-          </b-row>
-          <b-row>
-            <b-col sm="12">
-              <b-form-group>
-                <label for="saldo">Jumlah uang</label>
-                <b-form-input type="text" id="jumlah" placeholder="Rp. "></b-form-input>
-              </b-form-group>
-            </b-col>
-          </b-row>
-          <b-row>
-            <b-col sm="12">
-              <b-form-group>
-                <label for="tanggal">Tanggal Input</label>
-                <b-form-input type="text" id="tanggal" placeholder="YYYY-MM-DD HH:MM:SS"></b-form-input>
-              </b-form-group>
-            </b-col>
-          </b-row>
-          <div slot="footer">
-            <center>
-            <b-button type="submit" @submit="onSubmitted" size="sm" variant="primary"><i class="fa fa-dot-circle-o"></i> Submit</b-button>
-            </center>
-          </div>
-        </b-card>
+          <FormWallet :ket="ket" @submit="onSubmitted"/>
         </b-col>
       </b-row>
     </div>
@@ -44,11 +11,37 @@
 </template>
 
 <script>
-export default {
-  // methods: {
-  //   onSubmitted() {
+import FormWallet from "@/components/Forms/FormWallet";
+import axios from "axios";
 
-  //   }
-  // }
+export default {
+  components: {
+    FormWallet
+  },
+  data() {
+    return {
+      ket: "Top Up"
+    };
+  },
+  methods: {
+    onSubmitted(postData) {
+      axios
+        .post(
+          process.env.myapi +
+            '/graphql?query=mutation{ newSaldo(username:"' +
+            postData.username +
+            '",keterangan:"' +
+            postData.keterangan +
+            '",jumlah:' +
+            postData.uang +
+            "){ id jumlah} }"
+        )
+        .then(
+          //response => (window.location = "/laporan/riwayatSaldo")
+          result => console.log(result)
+        )
+        .catch(error => console.log(error));
+    }
+  }
 };
 </script>

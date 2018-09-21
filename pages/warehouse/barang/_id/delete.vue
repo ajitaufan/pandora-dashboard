@@ -1,11 +1,11 @@
 <template>
 <b-card>
   <section>
-    <h2>Hapus {{gudang.nama}}?</h2>
-    <form v-on:submit.prevent="deleteGudang"> 
+    <h2>Hapus {{barang.nama}}?</h2>
+    <form v-on:submit.prevent="deleteBarang"> 
       <p>Tindakan ini tidak bisa dibatalkan.</p>
       <button type="submit" class="btn btn-danger">Hapus</button>
-      <nuxt-link to="/warehouse/gudang" class="btn btn-default">Cancel</nuxt-link>
+      <nuxt-link to="/warehouse/barang" class="btn btn-default">Cancel</nuxt-link>
     </form>
   </section>
 </b-card>
@@ -17,23 +17,23 @@ import axios from "axios";
 export default {
   data() {
     return {
-      gudang: {
+      barang: {
         id: this.$route.params.id,
         nama: this.$route.params.nama
       }
     };
   },
   methods: {
-    deleteGudang() {
+    deleteBarang() {
       axios
         .post(
           process.env.myapi +
-            "/graphql?query=mutation{delGudang(id:" +
-            this.gudang.id +
+            "/graphql?query=mutation{delBarang(id:" +
+            this.barang.id +
             "){id,nama}}"
         )
         .then(
-          //response => (window.location = "/warehouse/gudang")
+          response => (window.location = "/warehouse/barang"),
           result => console.log(result)
         )
         .catch(error => console.log(error));

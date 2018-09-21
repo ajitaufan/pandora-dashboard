@@ -1,9 +1,12 @@
+//const pkg = require("./package");
+
 module.exports = {
   /*
   ** Headers of the page
   */
   head: {
     title: "Pandora Dashboard",
+    //pkg.name
     meta: [
       { charset: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
@@ -18,7 +21,7 @@ module.exports = {
   loading: { color: "#42A5CC" },
 
   env: {
-    myapi: process.env.myapi || "http://af49367f.ngrok.io"
+    myapi: process.env.myapi || "http://8d975ba0.ngrok.io"
   },
   /**
    * Import CSS

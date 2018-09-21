@@ -6,9 +6,9 @@
           <b-card no-body class="mx-4">
             <b-card-body class="p-4">
   
-              <h2><strong>Register</strong></h2>
-              <p class="text-muted"><i class="fa fa-group"></i> Tambah Admin</p>
-              <FormAdmin @submit="onSubmitted" />
+              <h2><strong>Ubah Data Admin </strong></h2>
+              <p class="text-muted"><i class="fa fa-group"></i> Ubah data admin <strong>{{loadedAdmin.nama}}</strong></p>
+              <FormAdmin :post="loadedAdmin" @submit="updateAdmn" />
 
             </b-card-body>
           </b-card>
@@ -26,6 +26,16 @@ export default {
   components: {
     FormAdmin
   },
+  data() {
+    return {
+      loadedAdmin: {
+        id: this.$route.params.id,
+        nama: this.$route.params.admin.nama,
+        username: this.$route.params.admin.username
+      }
+    };
+  },
+
   methods: {
     // checkForm: function(e) {
     //   this.errors = [];
@@ -33,11 +43,13 @@ export default {
     //     this.errors.push("Password dan Konfirmasi Password tidak sama.");
     //   }
     // },
-    onSubmitted(postData) {
+    updateAdmn(postData) {
       axios
         .post(
           process.env.myapi +
-            '/graphql?query=mutation{AddUser(nama:"' +
+            "/graphql?query=mutation{updateUser(id:" +
+            postData.id +
+            'nama:"' +
             postData.nama +
             '",username:"' +
             postData.username +
@@ -46,8 +58,8 @@ export default {
             '"){id,nama,username}}'
         )
         .then(
-          //result => console.log(result),
-          response => (window.location = "/user")
+          result => console.log(result)
+          //response => (window.location = "/user")
         )
         .catch(e => console.log(e));
     }

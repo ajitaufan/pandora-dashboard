@@ -1,62 +1,61 @@
 <template>
-    <section>
-    <h2>Add new Barang</h2>
-    <form method="post" v-on:submit.prevent="createBrg">
-        <span>
-            <div class="form-group">
-                <label for="edit-name">Nama</label>
-                <input class="form-control" id="nama" v-model="barang.nama" required/>
-            </div>
-            <div class="form-group">
-                <label for="edit-sku">SKU</label>
-                <input class="form-control" id="sku" v-model="barang.sku" >
-            </div>
-            <div class="form-group">
-                <label for="edit-alamat">Deskripsi</label>
-                <textarea class="form-control" id="desc" rows="3" v-model="barang.deskripsi" ></textarea>
-            </div>
-        </span>
-        <button type="submit" class="btn btn-primary">Create</button>
-        <nuxt-link to="/warehouse/barang" class="btn btn-default">Cancel</nuxt-link>
-    </form>
+  <section>
+    <h2><strong>Tambah</strong> Barang baru</h2>
+    <FormBarang @submit="onSubmitted" :isCreated="isCreated" />
   </section>
 </template>
 
 <script>
+import FormBarang from "@/components/Forms/FormBarang";
 import axios from "axios";
 
 export default {
+  components: {
+    FormBarang
+  },
   data() {
     return {
-      barang: {
-        nama: "",
-        sku: "",
-        deskripsi: ""
-      }
+      isCreated: true
     };
   },
 
   methods: {
-    createBrg() {
+    onSubmitted(postData) {
       axios
         .post(
           process.env.myapi +
-            '/graphql?query=mutation{newBarang(nama:"' +
-            this.barang.nama +
+            '/graphql?query=mutation{newBarangFull(nama_barang:"' +
+            postData.nama +
             '",sku:"' +
-            this.barang.sku +
+            postData.sku +
             '",deskripsi:"' +
-            this.barang.deskripsi +
-            '"){id,nama,sku,deskripsi}}'
+            postData.deskripsi +
+            '",dimensi:{panjang:"' +
+            postData.dimensi.panjang +
+            '",lebar:"' +
+            postData.dimensi.lebar +
+            '",tinggi:"' +
+            postData.dimensi.tinggi +
+            '"},berat:' +
+            postData.berat +
+            ",harga:" +
+            postData.harga +
+            ",harga_promo:" +
+            postData.harga_promo +
+            ',thumbnail:"' +
+            postData.thumbn +
+            '",image_ori:"' +
+            postData.image_ori +
+            '",kategori:"' +
+            postData.kategori +
+            '"){id,sku,nama,berat,deskripsi,dimensi{panjang,lebar,tinggi},pricing{id,sku_barang,tanggal,harga,harga_promo},image{id,thumbnail,image_ori,id_barang}}}'
         )
         .then(
-          response =>
-            // RESOLVE WIP
-            (window.location = "/warehouse/barang")
+          //response => (window.location = "/warehouse/barang")
+          result => console.log(result)
         )
         .catch(error => console.log(error));
     }
   }
 };
 </script>
-

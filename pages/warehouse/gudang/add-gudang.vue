@@ -1,55 +1,48 @@
 <template>
+  <div>
+    <h2><strong>Tambah</strong> <small> Gudang baru</small></h2>
     <section>
-    <h2>Add new Gudang</h2>
-    <form method="post" v-on:submit.prevent="createGd">
-        <span>
-            <div class="form-group">
-                <label for="edit-name">nama</label>
-                <input class="form-control" id="nama" v-model="gudang.nama" required/>
-            </div>
-            <div class="form-group">
-                <label for="edit-alamat">Alamat</label>
-                <textarea class="form-control" id="alamat" rows="3" v-model="gudang.alamat" ></textarea>
-            </div>
-        </span>
-        <button type="submit" class="btn btn-primary">Create</button>
-        <nuxt-link to="/warehouse/gudang" class="btn btn-default">Cancel</nuxt-link>
-    </form>
-  </section>
+      <br>
+      <FormGudang @submit="onSubmitted" />
+    </section>
+  </div>
 </template>
 
-<script>
+// <script>
+import FormGudang from "@/components/Forms/FormGudang";
 import axios from "axios";
 
 export default {
-  data() {
-    return {
-      gudang: {
-        nama: "",
-        alamat: ""
-      }
-    };
+  components: {
+    FormGudang
   },
-
   methods: {
-    createGd() {
+    onSubmitted(postData) {
       axios
         .post(
           process.env.myapi +
             '/graphql?query=mutation{newGudang(nama:"' +
-            this.gudang.nama +
-            '",alamat:"' +
-            this.gudang.alamat +
-            '"){id,nama,alamat}}'
+            postData.nama +
+            '",alamat: {jalan:"' +
+            postData.alamat.jalan +
+            '", kelurahan: "' +
+            postData.alamat.kelurahan +
+            '", kecamatan: "' +
+            postData.alamat.kecamatan +
+            '", kota: "' +
+            postData.alamat.kota +
+            '", kodepos: "' +
+            postData.alamat.kodepos +
+            '"}){id,nama}}'
         )
         .then(
-          response =>
-            // RESOLVE WIP
-            (window.location = "/warehouse/gudang")
+          response => (window.location = "/warehouse/gudang")
+          //result => console.log(result)
         )
-        .catch(error => console.log(error));
+        .catch(e => console.log(e));
     }
   }
 };
+//
 </script>
 

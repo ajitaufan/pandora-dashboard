@@ -14,20 +14,25 @@
 </template>
 
 <script>
-import nav from './menu'
-import { Header as AppHeader, Sidebar, Footer as AppFooter} from '~/components/'
+import nav from "./menu";
+import {
+  Header as AppHeader,
+  Sidebar,
+  Footer as AppFooter
+} from "~/components/";
 
 export default {
-  name: 'full',
+  name: "full",
+  middleware: "auth",
   components: {
     AppHeader,
     Sidebar,
     AppFooter
   },
-  data () {
+  data() {
     return {
       nav: nav.items
-    }
+    };
   }
-}
+};
 </script>

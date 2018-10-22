@@ -51,10 +51,13 @@ export default {
             '"){id,sku,nama,berat,deskripsi,dimensi{panjang,lebar,tinggi},pricing{id,sku_barang,tanggal,harga,harga_promo},image{id,thumbnail,image_ori,id_barang}}}'
         )
         .then(
-          //response => (window.location = "/warehouse/barang")
+          // response => (window.location = "/warehouse/barang")
           result => console.log(result)
         )
-        .catch(error => console.log(error));
+        .catch(error => {
+          console.log(error);
+          alert("gagal");
+        });
     }
   }
 };

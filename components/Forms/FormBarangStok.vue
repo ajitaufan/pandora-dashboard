@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <section>
     <form @submit.prevent="OnSave">
       <b-card header="<strong>Tambah</strong> Barang pada Stok">
         <h3><strong>Tambah</strong>  kuantitas barang Stok {{stokh.id}}</h3>  
@@ -36,13 +36,13 @@
 
         <div class="input-control">
           <h6><strong>Kuantitas</strong></h6>
-          <input v-model="kuantitas" type="number" placeholder="jumlah barang" min="0" >
+          <input v-model="stok.kuantitas" required type="number" placeholder="jumlah barang" min="0" >
         </div> 
-        <AppControlInput v-model="satuan" required placeholder="(kodi/lusin/gross/dll)" > Satuan Barang </AppControlInput>
+        <AppControlInput v-model="stok.satuan" required placeholder="(kodi/lusin/gross/dll)" > Satuan Barang </AppControlInput>
 
         <div slot="footer">
             <center>
-            <b-button type="submit" size="sm" variant="success"><i class="fa fa-dot-circle-o"></i> Tambah Stok</b-button>
+            <b-button type="submit" :disabled="submitted" size="sm" variant="success"><i class="fa fa-dot-circle-o"></i> Tambah Stok</b-button>
             </center>
         </div>
 
@@ -68,7 +68,7 @@
         </b-tabs> -->
       </b-card>
     </form>
-  </div>
+  </section>
 </template>
 
 <script>
@@ -79,6 +79,16 @@ export default {
   components: {
     AppControlInput
   },
+  props: {
+    isCreated: {
+      type: Boolean,
+      required: false
+    },
+    post: {
+      type: Object,
+      required: false
+    }
+  },
   data() {
     return {
       // tabs: [],
@@ -86,10 +96,16 @@ export default {
       stokh: {
         id: this.$route.params.id
       },
+
       keywords: null,
-      kuantitas: "",
-      satuan: "",
-      hasils: []
+      hasils: [],
+      submitted: false,
+      stok: this.post
+        ? { ...this.post }
+        : {
+            kuantitas: "",
+            satuan: ""
+          }
     };
   },
 
@@ -125,29 +141,17 @@ export default {
         });
     },
     OnSave() {
-      axios
-        .post(
-          process.env.myapi +
-            "/graphql?query=mutation{ stokDetailfull(id_stok_header:" +
-            this.stokh.id +
-            ",kuantitas:" +
-            this.kuantitas +
-            ',satuan:"' +
-            this.satuan +
-            '",sku:"' +
-            this.keywords +
-            '"){ id barang{ sku } } }'
-        )
-        .then(
-          response => (window.location = "/warehouse/barang")
-          // result => console.log(result)
-        )
-        .catch(e => console.log(e));
+      this.submitted = true;
+      if (this.stok != null) {
+        this.$emit("submit", this.stok, this.keywords);
+      } else {
+        alert("Terjadi kesalahan, coba lagi");
+        this.submitted = false;
+      }
     }
   }
 };
 </script>
-
 
 <style scoped>
 .input-control {

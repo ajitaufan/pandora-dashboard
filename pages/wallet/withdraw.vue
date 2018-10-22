@@ -39,8 +39,8 @@ export default {
             "){ id jumlah} }"
         )
         .then(
-          // response => (window.location = "/laporan/riwayatSaldo")
-          result => console.log(result)
+          response => (window.location = "/laporan/riwayatSaldo")
+          //result => console.log(result)
         )
         .catch(error => console.log(error));
     }

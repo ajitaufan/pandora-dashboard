@@ -43,11 +43,11 @@ export default {
             postData.username +
             '",password:"' +
             postData.password +
-            '"){id,nama,username}}'
+            '",scope:"admin"){id,nama,return,username,organizations{ uuid nama scopes }}}'
         )
         .then(
-          //result => console.log(result),
-          response => (window.location = "/user")
+          result => console.log(result)
+          //response => (window.location = "/admin")
         )
         .catch(e => console.log(e));
     }

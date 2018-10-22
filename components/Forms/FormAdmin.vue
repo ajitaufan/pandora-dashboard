@@ -35,10 +35,10 @@
             <i class="icon-lock"></i>
           </b-input-group-text>
         </b-input-group-prepend>
-        <input type="password" class="form-control" required placeholder="Konfirmasi Password">
+        <input type="password" class="form-control" v-model="admin.pw2" required placeholder="Konfirmasi Password">
       </b-input-group>
 
-      <b-button type="submit" :disabled="submit" variant="success" block>Create Account</b-button>
+      <b-button type="submit" :disabled="submit" variant="success" block>Submit Account</b-button>
     </form>
 
   </section>
@@ -61,14 +61,19 @@ export default {
             id: "",
             nama: "",
             username: "",
-            password: ""
+            password: "",
+            pw2: ""
           }
     };
   },
   methods: {
     OnSave() {
-      this.submit = true;
-      this.$emit("submit", this.admin);
+      if (this.admin.password != this.admin.pw2) {
+        alert("password dan konfirmasi password tidak sama");
+      } else {
+        this.submit = true;
+        this.$emit("submit", this.admin);
+      }
     }
   }
 };

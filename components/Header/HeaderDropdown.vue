@@ -3,7 +3,7 @@
         <template slot="button-content">
           <span>Admin <i class="fa fa-caret-down"></i></span>
         </template>
-        <b-dropdown-header tag="div" class="text-center"><strong>Account</strong></b-dropdown-header>
+        <!-- <b-dropdown-header tag="div" class="text-center"><strong>Account</strong></b-dropdown-header>
         <b-dropdown-item><i class="fa fa-bell-o"></i> Updates<b-badge variant="info">{{itemsCount}}</b-badge></b-dropdown-item>
         <b-dropdown-item><i class="fa fa-envelope-o"></i> Messages<b-badge variant="success">{{itemsCount}}</b-badge></b-dropdown-item>
         <b-dropdown-item><i class="fa fa-tasks"></i> Tasks<b-badge variant="danger">{{itemsCount}}</b-badge></b-dropdown-item>
@@ -13,29 +13,24 @@
         <b-dropdown-item><i class="fa fa-wrench"></i> Settings</b-dropdown-item>
         <b-dropdown-item><i class="fa fa-usd"></i> Payments<b-badge variant="secondary">{{itemsCount}}</b-badge></b-dropdown-item>
         <b-dropdown-item><i class="fa fa-file"></i> Projects<b-badge variant="primary">{{itemsCount}}</b-badge></b-dropdown-item>
-        <b-dropdown-divider></b-dropdown-divider>
-        <b-dropdown-item><i class="fa fa-shield"></i> Lock Account</b-dropdown-item>
+        <b-dropdown-divider></b-dropdown-divider> -->
+        <!-- <b-dropdown-item><i class="fa fa-shield"></i> Lock Account</b-dropdown-item> -->
         <b-dropdown-item @click="logout"><i class="fa fa-sign-out"></i> Logout</b-dropdown-item>
       </b-nav-item-dropdown>
 </template>
 
 <script>
-  export default {
-    name: 'header-dropdown',
-    data: () => {
-      return { itemsCount: 42 }
-    },
-    methods: {
-      async logout() {
-        try {
-          this.$store.dispatch('logout').then(() => {
-            this.$router.push('~/pages/login.vue')
-          })
-        } catch (e) {
-          this.formError = e.message
-        }
-      }
+export default {
+  name: "header-dropdown",
+  data: () => {
+    return { itemsCount: 42 };
+  },
+  methods: {
+    logout() {
+      this.$store.dispatch("logout");
+      this.$router.push("/");
     }
   }
+};
 </script>
 

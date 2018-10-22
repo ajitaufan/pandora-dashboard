@@ -7,7 +7,7 @@
       <AppControlInput v-model="gudang.alamat.kelurahan" required> -Kelurahan </AppControlInput>
       <AppControlInput v-model="gudang.alamat.kecamatan" required> -Kecamatan </AppControlInput>
       <AppControlInput v-model="gudang.alamat.kota" required> -Kota </AppControlInput>
-      <AppControlInput type="number" v-model="gudang.alamat.kodepos" min="0"> -Kodepos </AppControlInput> <br>
+      <AppControlInput type="number" required v-model="gudang.alamat.kodepos" min="0"> -Kodepos </AppControlInput> <br>
 
       <button class="btn-primary btn" type="submit" :disabled="submitted" >Simpan </button>
       <button class="btn btn-danger"

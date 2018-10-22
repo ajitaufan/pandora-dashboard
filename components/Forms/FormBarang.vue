@@ -6,18 +6,15 @@
         <b-tabs small card>
           <b-tab title="Barang inputan utama">
             <AppControlInput v-model="barang.nama" required> Nama Barang </AppControlInput>
-            <AppControlInput v-model="barang.sku" required> SKU Barang </AppControlInput>
             <div v-if="isCreated==true" class="input-control">
+              <AppControlInput v-model="barang.sku"> SKU Barang </AppControlInput>
               <h6><strong>Kategori</strong></h6>
-              <select v-model="barang.kategori">
-                <option disabled value="">Pilih Katagori</option>
-                <option>Fashion</option>
-                <option>Gadget dan Accessories</option>
-                <option>Alat Rumah Tangga</option>
-                <option>Makanan</option>
-                <option>Alat Elektronik</option>
-                <option>Alat Tulis & Kantor</option>
-              </select><br>
+               <b-form-group>
+                <b-form-select v-model="barang.kategori" id="basicSelect"
+                  :plain="true"
+                  :options="['Fashion','Gadget dan Accessories', 'Alat Rumah Tangga', 'Makanan', 'Alat Elektronik', 'Alat Tulis & Kantor']">
+                </b-form-select>
+              </b-form-group>
             </div>
           </b-tab>
           <b-tab title="Deskripsi Barang">
@@ -36,14 +33,16 @@
           <div v-if="isCreated==true" class="input-control">
             <b-tab title="Harga Barang">
               <div class="input-control">
-                <h6><strong>Harga</strong></h6><input type="number" placeholder="Rp. " required v-model.number="barang.harga">  
-                <br><h6><strong>Harga Promo</strong></h6><input type="number" placeholder="Rp. " v-model.number="barang.harga_promo"> 
+                <h6><strong>Harga</strong></h6><input type="number" min="0" placeholder="Rp. " required v-model.number="barang.harga">  
+                <br><h6><strong>Harga Promo</strong></h6><input type="number" min="0" placeholder="*jika tidak ada promo isi 0" v-model.number="barang.harga_promo"> 
               </div>
             </b-tab>
           </div>
           <b-tab title="Gambar Barang">
             <AppControlInput v-model="barang.thumbn" required  placeholder="http://www."> Thumbnail Gambar</AppControlInput>
-             <AppControlInput v-model="barang.image_ori" required placeholder="http://www."> Gambar Orisinil</AppControlInput>
+            <AppControlInput v-model="barang.image_ori" required placeholder="http://www."> Gambar Orisinil</AppControlInput>
+
+            <!-- <div v-if="isCreated==true" class="input-control"> -->
               <br>
               <button class="btn-primary btn" type="submit" :disabled="submitted" >Simpan </button>
               <button class="btn btn-danger"
@@ -51,10 +50,13 @@
               style="margin-left: 10px;" 
               btn-style="cancel" 
               @click="OnCancel">Cancel </button>
-
+            <!-- </div> -->
           </b-tab>
         </b-tabs>
       </b-card>
+      <div class="float-md-right">
+        <h6>*Pastikan semua inputan terisi</h6>
+      </div>
     </form>
   </section>
 </template>
@@ -85,8 +87,6 @@ export default {
         : {
             id: "",
             nama: "",
-            sku: "",
-            kategori: "",
             berat: "",
             dimensi: [
               {
@@ -96,8 +96,6 @@ export default {
               }
             ],
             deskripsi: "",
-            harga: "",
-            harga_promo: "",
             thumbn: "",
             image_ori: ""
           }
@@ -106,7 +104,11 @@ export default {
   methods: {
     OnSave() {
       // this.submitted = true;
-      this.$emit("submit", this.barang);
+      if (this.barang != null) {
+        this.$emit("submit", this.barang);
+      } else {
+        alert("Pastikan semua form terisi");
+      }
     },
     OnCancel() {
       this.$router.push("/warehouse/barang");

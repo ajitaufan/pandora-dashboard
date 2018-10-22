@@ -3,7 +3,7 @@
     <b-card header="<i class='fa fa-building'></i><strong> Daftar Admin</strong>">
 
       <p align="right">
-        <nuxt-link class="btn-sm btn-primary" :to="{path: '/user/addAdmin'}">
+        <nuxt-link class="btn btn-sm btn-primary" :to="{path: '/admin/addAdmin'}">
           <span class="fa fa-plus"></span> Admin
         </nuxt-link>
       </p>
@@ -30,8 +30,8 @@
               <td>{{admin.username}}</td>
               <td> 
                 <center>
-                <nuxt-link class="btn btn-sm btn-warning" style="margin-right:3px" :to="{name: 'user-id-edit', params: {id: admin.id, admin: admin}}">Edit</nuxt-link>
-                <nuxt-link class="btn btn-sm btn-danger" :to="{name: 'user-id-delete', params: {id: admin.id, username: admin.username,nama: admin.nama}}">Delete</nuxt-link>
+                <nuxt-link class="btn btn-sm btn-warning" style="margin-right:3px" :to="{name: 'admin-id-edit', params: {id: admin.id, admin: admin}}">Edit</nuxt-link>
+                <nuxt-link class="btn btn-sm btn-danger" :to="{name: 'admin-id-delete', params: {id: admin.id, username: admin.username,nama: admin.nama}}">Delete</nuxt-link>
                 </center>
               </td>
             </tr>
@@ -55,16 +55,5 @@ export default {
     );
     return { datau: data.data.users };
   }
-  // data () {
-  //   return {
-  //     items: items,
-  //     fields: [
-  //       {key: 'id'},
-  //       {key: 'nama'},
-  //       {key: 'sku'},
-  //       {key: 'deskripsi'}
-  //     ]
-  //   }
-  // }
 };
 </script>

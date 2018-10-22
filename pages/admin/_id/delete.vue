@@ -9,7 +9,7 @@
               <form v-on:submit.prevent="deleteAdmn">
                 <p>Tindakan ini tidak bisa dibatalkan.</p>
                 <button type="submit" class="btn btn-danger">Hapus</button>
-                <nuxt-link to="/user" class="btn btn-default">Cancel</nuxt-link>
+                <nuxt-link to="/admin" class="btn btn-default">Cancel</nuxt-link>
               </form>
 
             </b-card-body>
@@ -21,32 +21,32 @@
 </template>
 
 <script>
-  import axios from "axios"
+import axios from "axios";
 
-  export default {
-    data() {
-      return {
-        admin: {
-          username: this.$route.params.username,
-          nama: this.$route.params.nama
-        }
+export default {
+  data() {
+    return {
+      admin: {
+        username: this.$route.params.username,
+        nama: this.$route.params.nama
       }
-    },
-    methods: {
-      deleteAdmn() {
-        axios
-          .post(
-            process.env.myapi +
+    };
+  },
+  methods: {
+    deleteAdmn() {
+      axios
+        .post(
+          process.env.myapi +
             '/graphql?query=mutation{Deactivate(username:"' +
             this.admin.username +
             '"){id,nama}}'
-          )
-          .then(
-            response => (window.location = "/user")
-            //result => console.log(result)
-          )
-          .catch(error => console.log(error));
-      }
+        )
+        .then(
+          response => (window.location = "/admin")
+          //result => console.log(result)
+        )
+        .catch(error => console.log(error));
     }
-  };
+  }
+};
 </script>

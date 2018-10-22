@@ -2,28 +2,25 @@
   <section>
     <form @submit.prevent="OnSubmitted">
       <AppControlInput v-model="stok.jenis"> Jenis Stok </AppControlInput>
-      <AppControlInput placeholder="YYYY-MM-DD hh:mm:ss" v-model="stok.tanggal" required> Tanggal Tercatat </AppControlInput>
       <AppControlInput v-model="stok.id_gudang"> ID Gudang </AppControlInput>
 
-      <button class="btn-secondary btn" :pressed="true" :disabled="submitted" type="submit">Simpan </button>
-      <AppButton 
+      <button class="btn-primary btn" :pressed="true" :disabled="submitted" type="submit">Simpan </button>
+      <button class="btn btn-danger"
       type="button" 
       style="margin-left: 10px" 
       btn-style="cancel" 
-      @click="OnCancel">Cancel </AppButton>
+      @click="OnCancel">Cancel </button>
     </form>
   </section>
 </template>
 
 <script>
 import AppControlInput from "@/components/UI/AppControlInput";
-import AppButton from "@/components/UI/AppButton";
 import axios from "axios";
 
 export default {
   components: {
-    AppControlInput,
-    AppButton
+    AppControlInput
   },
   data() {
     return {
@@ -43,8 +40,6 @@ export default {
           process.env.myapi +
             '/graphql?query=mutation{newStokHeader(jenis:"' +
             this.stok.jenis +
-            '" tanggal:"' +
-            this.stok.tanggal +
             '" id_gudang:' +
             this.stok.id_gudang +
             "){id jenis tanggal}} "
@@ -53,7 +48,10 @@ export default {
           // response => (window.location = "/warehouse/gudang")
           result => console.log(result)
         )
-        .catch(e => console.log(e));
+        .catch(e => {
+          console.log(e);
+          this.submitted = false;
+        });
     },
     OnCancel() {
       this.$router.push("/warehouse/stok");

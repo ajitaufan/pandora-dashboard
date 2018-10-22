@@ -60,17 +60,38 @@
                 </td>
               <td>{{barang.nama}}</td>
               <td>{{barang.sku}} </td>
-              <td>{{barang.kategori[0].kategori_nama.nama}} </td>
+              <td>
+                <div>
+                  {{barang.kategori[0].kategori_nama.nama}} <b-dropdown variant="link" size="sm" no-caret>
+                    <template slot="button-content">
+                      <i class="icon-pencil"></i>
+                    </template>
+                    <b-dropdown-item>
+                      <nuxt-link class="btn btn-sm" :to="{name:'warehouse-barang-id-category', params: {id:barang.id, barang: barang}}">Tambah Kategori Detail</nuxt-link>
+                    </b-dropdown-item>
+                  </b-dropdown>
+              </div>
+
+              </td>
               <td> <strong>Berat</strong> : {{barang.berat}} gram<br>
                 <strong>Dimensi</strong> : {{barang.dimensi}}
                 <!-- panjang= {{barang.dimensi.panjang}}, lebar= {{barang.dimensi.lebar}}, tinggi= {{barang.dimensi.tinggi}}, m^3<br> -->
                 {{barang.deskripsi}}</td>            
-              <td v-if="barang.pricing.harga_promo==0">{{ "Rp. "+ barang.pricing.harga }}</td>
-              <td v-else> <del>{{ "Rp. " + barang.pricing.harga }}</del><br>Rp. {{ barang.pricing.harga_promo }}</td>
+              <td> 
+                <div v-if="barang.pricing.harga_promo==0"> {{ "Rp. "+ barang.pricing.harga }} </div>
+                <div v-else> <del>{{ "Rp. " + barang.pricing.harga }}</del><br>Rp. {{ barang.pricing.harga_promo }} </div>
+                <b-dropdown variant="link" size="sm" no-caret>
+                    <template slot="button-content">
+                      <i class="icon-pencil"></i>
+                    </template>
+                    <b-dropdown-item>
+                      <nuxt-link class="btn btn-sm" :to="{name:'warehouse-barang-id-pricing', params: {id: barang.id, barang: barang}}">Atur Harga</nuxt-link>
+                    </b-dropdown-item>
+                  </b-dropdown>
               <td>
                 <center>
                 <nuxt-link class="btn btn-sm btn-warning" style="margin-right:3px" :to="{name: 'warehouse-barang-id-edit', params: {id: barang.id, barang:barang }}">Edit</nuxt-link>
-                <nuxt-link class="btn btn-sm btn-danger" :to="{name: 'warehouse-barang-id-delete', params: {id: barang.id, nama:barang.nama}}">Delete</nuxt-link> <br>
+                <nuxt-link v-if="barang.stokDetail[0]==null" class="btn btn-sm btn-danger" :to="{name: 'warehouse-barang-id-delete', params: {id: barang.id, nama:barang.nama}}">Delete</nuxt-link> <br>
                 </center>
               </td>
             </tr>
@@ -138,9 +159,11 @@ export default {
             vm.perPage +
             ',nama:"' +
             vm.keywords +
-            '"){id,sku,nama,berat,dimensi{panjang,lebar,tinggi},deskripsi,pricing{id,sku_barang,tanggal,harga,harga_promo}image{id,thumbnail,image_ori,id_barang},kategori{id_barang,id_kategori,kategori_nama{id,nama}}}, countSearchingBarangAdmin(nama:"' +
+            '"){ id nama sku berat dimensi{ panjang lebar tinggi } deskripsi pricing{ id sku_barang tanggal harga harga_promo } image{ id thumbnail image_ori id_barang } stokDetail{ id id_barang } kategori{ id_barang id_kategori kategori_nama{ id nama } } },countSearchingBarangAdmin(nama:"' +
             vm.keywords +
             '"){jumlah} }'
+
+          // /graphiql?query=query{ barang(skip:0,take:0,nama:""){ id nama sku berat dimensi{ panjang lebar tinggi } deskripsi pricing{ id sku_barang tanggal harga harga_promo } image{ id thumbnail image_ori id_barang } stokDetail{ id id_barang } kategori{ id_barang id_kategori kategori_nama{ id nama } } },countSearchingBarangAdmin(nama:""){ jumlah } }
         )
         .then(function(result) {
           (vm.datab = result.data.data.barang),
@@ -151,10 +174,11 @@ export default {
         });
     },
     next(page) {
-      this.page = page;
-      this.skip = (this.page - 1) * this.perPage;
+      // this.page = page;
+      // this.skip = (this.page - 1) * this.perPage;
       this.$nuxt._router.replace({ path: "/warehouse/barang?page=" + page });
-      this.fetch();
+      // this.fetch();
+      window.location.reload(true);
     }
   }
 

@@ -23,9 +23,9 @@
                 </td>
                 <td> {{saldo.tanggal}} </td>
                 
-                <td v-if='saldo.keterangan=="Top Up"'>  <b-badge variant="success">{{saldo.keterangan}}</b-badge> </td>
-                <td v-else-if='saldo.keterangan=="Withdraw"'> <b-badge variant="danger">{{saldo.keterangan}}</b-badge> </td>
-                <td v-else> <b-badge variant="secondary">{{saldo.keterangan}}</b-badge></td>
+                <td v-if='saldo.keterangan=="Top Up"'> <h5><b-badge variant="success">{{saldo.keterangan}}</b-badge></h5>  </td>
+                <td v-else-if='saldo.keterangan=="Withdraw"'> <h5><b-badge variant="danger">{{saldo.keterangan}}</b-badge></h5>  </td>
+                <td v-else> <h5><b-badge variant="secondary"> {{saldo.keterangan}}</b-badge></h5> </td>
                 
                 <td>Rp. {{saldo.jumlah}} </td>
               </tr>
@@ -89,17 +89,20 @@ export default {
         });
     },
     next(page) {
-      this.page = page;
-      this.skip = (this.page - 1) * this.perPage;
+      // this.page = page;
+      // this.skip = (this.page - 1) * this.perPage;
       this.$nuxt._router.replace({
         path: "/laporan/riwayatSaldo?page=" + page
       });
-      this.fetch();
+      // this.fetch();
+      window.location.reload(true);
     },
     getKet(keterangan) {
       return keterangan === "Top Up"
         ? "success"
-        : keterangan === "Withdraw" ? "warning" : "primary";
+        : keterangan === "Withdraw"
+          ? "warning"
+          : "primary";
     }
   }
 };

@@ -2,7 +2,7 @@
   <div>
     <section>
       <h2><strong>Ubah</strong> <small> keterangan gudang</small></h2>
-      <FormGudang :post="loadedGudang" @submit="updateGdg"/>
+      <FormGudang :isTrue="false" :post="loadedGudang" @submit="updateGdg"/>
     </section>
   </div>
 </template>

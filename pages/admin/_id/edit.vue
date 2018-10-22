@@ -58,8 +58,8 @@ export default {
             '"){id,nama,username}}'
         )
         .then(
-          result => console.log(result)
-          //response => (window.location = "/user")
+          // result => console.log(result)
+          response => (window.location = "/admin")
         )
         .catch(e => console.log(e));
     }

@@ -54,7 +54,7 @@
                 <td> 
                   <center>
                   <nuxt-link class="btn btn-sm btn-warning" style="margin-right:3px" :to="{name: 'warehouse-gudang-id-edit', params: {id: gudang.id, nama: gudang.nama, alamat: gudang.alamat}}">Edit</nuxt-link>
-                  <nuxt-link class="btn btn-sm btn-danger" :to="{name: 'warehouse-gudang-id-delete', params: {id: gudang.id,nama: gudang.nama}}">Delete</nuxt-link>
+                  <nuxt-link v-if="gudang.stokHeader[0]==null" class="btn btn-sm btn-danger" :to="{name: 'warehouse-gudang-id-delete', params: {id: gudang.id,nama: gudang.nama}}">Delete</nuxt-link>
                   </center>
                 </td>
               </tr>
@@ -121,9 +121,11 @@ export default {
             vm.skip +
             ", take:" +
             vm.perPage +
-            '){ id nama alamat{ jalan kecamatan kelurahan kota kodepos} }, countGudang(nama:"' +
+            '){ id nama alamat{ jalan kecamatan kelurahan kota kodepos} stokHeader{ id id_gudang } }, countGudang(nama:"' +
             vm.keywords +
             '"){jumlah} }'
+
+          // /graphiql?query=query{ searchGudang(nama:"",skip:0,take:0){ id nama alamat{ jalan kecamatan kelurahan kota kodepos } stokHeader{ id id_gudang } },countGudang(nama:""){ jumlah } }
         )
         .then(function(result) {
           (vm.datag = result.data.data.searchGudang),
@@ -135,11 +137,11 @@ export default {
         });
     },
     next(page) {
-      this.page = page;
-      this.skip = (this.page - 1) * this.perPage;
+      // this.page = page;
+      // this.skip = (this.page - 1) * this.perPage;
       this.$nuxt._router.replace({ path: "/warehouse/gudang?page=" + page });
-      this.fetch();
-      // window.location.reload(true);
+      // this.fetch();
+      window.location.reload(true);
     }
   }
 };

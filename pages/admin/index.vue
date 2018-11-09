@@ -30,7 +30,7 @@
               <td>{{admin.username}}</td>
               <td> 
                 <center>
-                <nuxt-link class="btn btn-sm btn-warning" style="margin-right:3px" :to="{name: 'admin-id-edit', params: {id: admin.id, admin: admin}}">Edit</nuxt-link>
+                <!-- <nuxt-link class="btn btn-sm btn-warning" style="margin-right:3px" :to="{name: 'admin-id-edit', params: {id: admin.id, admin: admin}}">Edit</nuxt-link> -->
                 <nuxt-link class="btn btn-sm btn-danger" :to="{name: 'admin-id-delete', params: {id: admin.id, username: admin.username,nama: admin.nama}}">Delete</nuxt-link>
                 </center>
               </td>
@@ -38,8 +38,6 @@
           </tbody>
         </table>
         </div>
-
-
 
     </b-card>
 

@@ -117,6 +117,17 @@ export default {
         this.password != null &&
         this.password != ""
       ) {
+        // {
+        //   this.$store
+        //     .dispatch("authenticateUser", {
+        //       isLogin: this.isLogin,
+        //       username: this.username,
+        //       password: this.password
+        //     })
+        //     .then(() => {
+        //       this.$router.push("/dashboard");
+        //     });
+        // }
         axios
           .post(
             process.env.myapi +
@@ -124,16 +135,13 @@ export default {
               this.username +
               '",password:"' +
               this.password +
-              '"}){token,user{id,username,organizations{nama,scopes}}}}'
+              '"}){token,user{id,username,nama,organizations{nama,scopes}}}}'
           )
           .then(
             response => {
-              this.$store.commit(
-                "auth/setUser",
-                response.data.data.Authenticate
-              ),
+              this.$store.commit("setUser", response.data.data.Authenticate),
                 this.$store.commit(
-                  "auth/setAuthenticated",
+                  "setAuthenticated",
                   response.data.data.Authenticate
                 ),
                 this.$router.push("/dashboard");

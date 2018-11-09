@@ -174,11 +174,11 @@ export default {
         });
     },
     next(page) {
-      // this.page = page;
-      // this.skip = (this.page - 1) * this.perPage;
+      this.page = page;
+      this.skip = (this.page - 1) * this.perPage;
       this.$nuxt._router.replace({ path: "/warehouse/barang?page=" + page });
-      // this.fetch();
-      window.location.reload(true);
+      this.fetch();
+      // window.location.reload(true);
     }
   }
 

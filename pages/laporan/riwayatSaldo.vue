@@ -74,7 +74,7 @@ export default {
       axios
         .get(
           process.env.myapi +
-            "/graphql?query={ saldo(skip:" +
+            "/graphql?query=query{ saldo(skip:" +
             vm.skip +
             ", take: " +
             vm.perPage +
@@ -89,13 +89,13 @@ export default {
         });
     },
     next(page) {
-      // this.page = page;
-      // this.skip = (this.page - 1) * this.perPage;
+      this.page = page;
+      this.skip = (this.page - 1) * this.perPage;
       this.$nuxt._router.replace({
         path: "/laporan/riwayatSaldo?page=" + page
       });
-      // this.fetch();
-      window.location.reload(true);
+      this.fetch();
+      // window.location.reload(true);
     },
     getKet(keterangan) {
       return keterangan === "Top Up"

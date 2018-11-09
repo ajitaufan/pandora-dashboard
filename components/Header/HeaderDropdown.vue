@@ -1,7 +1,8 @@
 <template>
-      <b-nav-item-dropdown right no-caret>
-        <template slot="button-content">
-          <span>Admin <i class="fa fa-caret-down"></i></span>
+      <b-nav-item-dropdown right>
+        <template slot="button-content"> 
+          <i class="fa fa-user-circle"></i>
+          <span> {{$store.state.credentials.nama}}</span>
         </template>
         <!-- <b-dropdown-header tag="div" class="text-center"><strong>Account</strong></b-dropdown-header>
         <b-dropdown-item><i class="fa fa-bell-o"></i> Updates<b-badge variant="info">{{itemsCount}}</b-badge></b-dropdown-item>
@@ -15,7 +16,7 @@
         <b-dropdown-item><i class="fa fa-file"></i> Projects<b-badge variant="primary">{{itemsCount}}</b-badge></b-dropdown-item>
         <b-dropdown-divider></b-dropdown-divider> -->
         <!-- <b-dropdown-item><i class="fa fa-shield"></i> Lock Account</b-dropdown-item> -->
-        <b-dropdown-item @click="logout"><i class="fa fa-sign-out"></i> Logout</b-dropdown-item>
+        <b-dropdown-item @click="onLogout"><i class="fa fa-sign-out"></i> Logout</b-dropdown-item>
       </b-nav-item-dropdown>
 </template>
 
@@ -26,9 +27,12 @@ export default {
     return { itemsCount: 42 };
   },
   methods: {
-    logout() {
-      this.$store.dispatch("logout");
-      this.$router.push("/");
+    onLogout() {
+      if (confirm("Apakah anda yakin ?")) {
+        this.$nuxt._router.push({ path: "/" });
+        window.location.reload(true);
+      } else {
+      }
     }
   }
 };

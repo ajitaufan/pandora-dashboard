@@ -139,7 +139,7 @@ export default {
             '"){ id barang{ sku } } }'
         )
         .then(
-          response => (window.location = "/warehouse/barang")
+          response => (window.location = "/warehouse/stok")
           // result => console.log(result)
         )
         .catch(e => console.log(e));

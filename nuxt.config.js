@@ -21,7 +21,7 @@ module.exports = {
   loading: { color: "#42A5CC" },
 
   env: {
-    myapi: process.env.myapi || "http://80a0294c.ngrok.io/"
+    myapi: process.env.myapi || "http://efa375f4.ngrok.io/"
   },
   /**
    * Import CSS

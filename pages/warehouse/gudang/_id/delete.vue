@@ -33,8 +33,8 @@ export default {
             "){id,nama}}"
         )
         .then(
-          //response => (window.location = "/warehouse/gudang")
-          result => console.log(result)
+          response => (window.location = "/warehouse/gudang")
+          //result => console.log(result)
         )
         .catch(error => console.log(error));
     }

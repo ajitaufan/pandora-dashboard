@@ -28,7 +28,7 @@
                   </template>
                   <template v-else>
                     <!-- eslint-disable -->
-                    <SidebarNavItem :classes="item.class">
+                    <SidebarNavItem :classes="item.class" v-bind:key="childL1">
                       <SidebarNavLink :name="childL1.name" :url="childL1.url" :icon="childL1.icon" :badge="childL1.badge" :variant="item.variant"/>
                     </SidebarNavItem>
                     <!-- eslint-enable -->
@@ -51,16 +51,16 @@
 </template>
 
 <script>
-import SidebarMinimizer from './SidebarMinimizer'
-import SidebarNavDivider from './SidebarNavDivider'
-import SidebarNavDropdown from './SidebarNavDropdown'
-import SidebarNavLink from './SidebarNavLink'
-import SidebarNavTitle from './SidebarNavTitle'
-import SidebarNavItem from './SidebarNavItem'
-import SidebarNavLabel from './SidebarNavLabel'
+import SidebarMinimizer from "./SidebarMinimizer";
+import SidebarNavDivider from "./SidebarNavDivider";
+import SidebarNavDropdown from "./SidebarNavDropdown";
+import SidebarNavLink from "./SidebarNavLink";
+import SidebarNavTitle from "./SidebarNavTitle";
+import SidebarNavItem from "./SidebarNavItem";
+import SidebarNavLabel from "./SidebarNavLabel";
 
 export default {
-  name: 'sidebar',
+  name: "sidebar",
   props: {
     navItems: {
       type: Array,
@@ -78,16 +78,16 @@ export default {
     SidebarNavLabel
   },
   methods: {
-    handleClick (e) {
-      e.preventDefault()
-      e.target.parentElement.classList.toggle('open')
+    handleClick(e) {
+      e.preventDefault();
+      e.target.parentElement.classList.toggle("open");
     }
   }
-}
+};
 </script>
 
 <style lang="css">
-  .nav-link {
-    cursor:pointer;
-  }
+.nav-link {
+  cursor: pointer;
+}
 </style>

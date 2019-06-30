@@ -30,7 +30,7 @@ export default {
     onLogout() {
       if (confirm("Apakah anda yakin ?")) {
         this.$nuxt._router.push({ path: "/" });
-        window.location.reload(true);
+        //window.location.reload(true);
       } else {
       }
     }

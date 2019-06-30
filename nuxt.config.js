@@ -2,8 +2,8 @@
 
 module.exports = {
   /*
-  ** Headers of the page
-  */
+   ** Headers of the page
+   */
   head: {
     title: "Pandora Dashboard",
     //pkg.name
@@ -16,12 +16,12 @@ module.exports = {
   },
 
   /*
-  ** Customize the progress bar color
-  */
+   ** Customize the progress bar color
+   */
   loading: { color: "#42A5CC" },
 
   env: {
-    myapi: process.env.myapi || "http://efa375f4.ngrok.io/"
+    myapi: process.env.myapi || "http://27f8157f.ngrok.io/"
   },
   /**
    * Import CSS
@@ -40,17 +40,17 @@ module.exports = {
   ],
 
   /*
-  ** Import Plugin 
+   ** Import Plugin
    */
   plugins: [{ src: "~plugins/bootstrap-vue.js", ssr: true }],
 
   /*
-  ** Build configuration
-  */
+   ** Build configuration
+   */
   build: {
     /*
-    ** Run ESLint on save
-    */
+     ** Run ESLint on save
+     */
     extend(config, { isDev, isClient }) {
       if (isDev && isClient) {
         config.module.rules.push({

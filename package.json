@@ -23,7 +23,7 @@
     "js-cookie": "^2.2.0",
     "node-sass": "^4.7.2",
     "npm": "^6.2.0",
-    "nuxt": "^1.0.0",
+    "nuxt": "^2.15.8",
     "sass-loader": "^6.0.6",
     "simple-line-icons": "^2.4.1",
     "vue-chartjs": "^3.1.1",
